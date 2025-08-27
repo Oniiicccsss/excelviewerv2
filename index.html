@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhpSpreadsheet Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loader" class="loader-overlay" style="display:none;">
+  <div class="spinner"></div>
+  <div class="loader-text">Loading spreadsheet…</div>
+</div>
+<div class="wrap">
+  <div class="card">
+    <div class="top">
+      <div class="title">🧾 PhpSpreadsheet Viewer</div>
+      <div class="controls">
+        <input id="file" class="control" type="file" accept=".xlsx,.xls,.csv" />
+        <div class="search control" id="searchBox" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input id="query" placeholder="Search (Ctrl+/)" />
+          <button id="clear" class="btn" style="padding:6px 8px;margin-left:8px">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet-area">
+      <div class="grid-header">
+        <div class="top-left">#</div>
+        <div class="col-labels-container"><div class="col-labels" id="colLabels"></div></div>
+      </div>
+      <div class="grid-content">
+        <div class="row-labels-container"><div class="row-labels" id="rowLabels"></div></div>
+        <div class="viewport" id="viewport"></div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <ul class="sheet-tabs" id="sheetTabs"></ul>
+      <span id="sheetInfo">Load a file to display.</span>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
