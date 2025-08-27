@@ -1,0 +1,422 @@
+/* LIGHT MODE THEME */
+:root {
+    --bg: #f5f5f5;
+    --panel: #ffffff;
+    --muted: #6b7280;
+    --text: #1f2937;
+    --accent: #10b981;
+    --cell-border: #e5e7eb;
+    --header-bg: #f5f5f5;
+    --tab-bg: #e5e7eb;
+    --tab-active-bg: #ffffff;
+    --grid-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Arial
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 1. Card: Main Flex container (Vertical) */
+.card {
+    height: 100%;
+    border-radius: 0;
+    border: 1px solid var(--cell-border);
+    background: var(--panel);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid var(--cell-border);
+    min-height: 48px;
+    flex-shrink: 0;
+}
+
+.title {
+    font-weight: 700
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    align-items: center
+}
+
+.control {
+    background: transparent;
+    border: 1px solid var(--cell-border);
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--text)
+}
+
+.search {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--cell-border)
+}
+
+.search input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: var(--text);
+    width: 220px
+}
+
+.btn {
+    background: var(--accent);
+    color: #ffffff;
+    border: 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 13px
+}
+
+/* 2. Sheet area takes up all remaining space (Vertical Flex) */
+.sheet-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+/* NEW: Header row (Horizontal Flex) - Holds top-left and column labels */
+.grid-header {
+    display: flex;
+    flex-shrink: 0;
+}
+
+/* NEW: Content row (Horizontal Flex) - Holds row labels and viewport */
+.grid-content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+/* 3. Top-Left Corner Box */
+.top-left {
+    height: 36px;
+    width: 60px;
+    background: var(--header-bg);
+    border-right: 1px solid var(--cell-border);
+    border-bottom: 1px solid var(--cell-border);
+    color: var(--muted);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* 4. Row Labels Container (Fixed Width, Vertical Scroll) */
+.row-labels-container {
+    width: 60px;
+    background: var(--header-bg);
+    border-right: 1px solid var(--cell-border);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Hide extra overflow, sync with viewport */
+    position: relative;
+}
+
+.row-labels {
+    position: absolute; /* Match viewport scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.row-labels-inner {
+    position: relative;
+    width: 100%;
+}
+
+.row-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--cell-border);
+    min-width: 60px;
+    padding: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    box-sizing: border-box;
+}
+
+
+/* Resize handle for rows */
+.row-resize-handle {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    cursor: ns-resize;
+    z-index: 10;
+}
+
+
+/* 5. Column Labels Container (Horizontal Scroll) */
+.col-labels-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.col-labels {
+    height: 36px;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--cell-border);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.col-labels-inner {
+    position: relative;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.col-label {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    border-right: 1px solid var(--cell-border);
+    font-size: 13px;
+    color: var(--muted);
+    min-width: 0;
+    position: relative;
+}
+
+/* Resize handle for columns */
+.col-resize-handle {
+    position: absolute;
+    right: -3px;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    cursor: ew-resize;
+    z-index: 10;
+}
+
+/* 6. Viewport / Grid */
+.viewport {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    background: var(--grid-bg);
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+/* Make the inner grid use CSS Grid instead of absolute positioning */
+.grid-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    /* adjust width */
+    grid-auto-rows: 30px;
+    /* default row height */
+    position: relative;
+    width: max-content;
+    /* expands as needed */
+}
+
+/* cell style */
+.cell {
+    position: relative;
+    /* remove absolute positioning */
+    box-sizing: border-box;
+    border-right: 1px solid var(--cell-border);
+    border-bottom: 1px solid var(--cell-border);
+    padding: 4px 6px;
+    font-size: 13px;
+    cursor: default;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* The content span inside the cell */
+.cell .cell-content {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Merged cells / wrapped cells expand naturally */
+.cell.merged-root,
+.cell.word-wrap {
+    white-space: normal;
+    word-break: break-word;
+    height: auto;
+    align-items: flex-start;
+    /* align text to the top */
+    padding: 6px 8px;
+}
+
+
+/* The content span inside the cell for height measurement */
+.cell .cell-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    width: 100%;
+}
+
+.cell.merged-root {
+    border: 1px solid var(--cell-border);
+    z-index: 5;
+    white-space: normal;
+}
+
+/* Styles for word wrap */
+.cell.word-wrap .cell-content {
+    white-space: normal;
+    overflow: visible;
+    word-break: break-word;
+}
+
+.cell mark {
+    background: #fef08a;
+    color: #000;
+    font-weight: 700;
+    padding: 0;
+}
+
+/* FOOTER */
+.meta {
+    display: flex;
+    padding: 0 10px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--cell-border);
+    min-height: 42px;
+    align-items: center;
+    gap: 15px;
+    background: var(--header-bg);
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+/* Sheet Tabs Styles */
+.sheet-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-right: auto;
+    z-index: 10;
+}
+
+.sheet-tab {
+    background: var(--tab-bg);
+    border: 1px solid var(--cell-border);
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-right: 2px;
+    transition: background 0.1s;
+    transform: translateY(-1px);
+}
+
+.sheet-tab:hover {
+    background: #e9ecef;
+}
+
+.sheet-tab.active {
+    background: var(--tab-active-bg);
+    border-color: var(--cell-border);
+    color: var(--text);
+    font-weight: 600;
+    z-index: 10;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #ddd;
+    border-top: 6px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader-text {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

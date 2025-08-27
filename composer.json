@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpoffice/phpexcel": "dev-master",
+        "phpoffice/phpspreadsheet": "^1.25",
+        "box/spout": "^3.3"
+    }
+}
